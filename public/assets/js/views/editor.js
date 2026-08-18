@@ -553,14 +553,15 @@ export async function renderEditor({ view, actions, params, setTitle }) {
 
   let menuNode = null;
 
+  const onDocumentClick = (event) => {
+    if (menuNode && !menuNode.contains(event.target)) closeMenu();
+  };
+
   function closeMenu() {
     menuNode?.remove();
     menuNode = null;
+    document.removeEventListener("click", onDocumentClick);
   }
-
-  document.addEventListener("click", (event) => {
-    if (menuNode && !menuNode.contains(event.target)) closeMenu();
-  });
 
   function openAiMenu(x, y) {
     closeMenu();
@@ -588,6 +589,8 @@ export async function renderEditor({ view, actions, params, setTitle }) {
     const rect = menuNode.getBoundingClientRect();
     menuNode.style.left = `${Math.min(x, window.innerWidth - rect.width - 12)}px`;
     menuNode.style.top = `${Math.min(y, window.innerHeight - rect.height - 12)}px`;
+    // Bound after the current click finishes so it does not close immediately.
+    setTimeout(() => document.addEventListener("click", onDocumentClick), 0);
   }
 
   doc.addEventListener("contextmenu", (event) => {
@@ -693,23 +696,22 @@ export async function renderEditor({ view, actions, params, setTitle }) {
   };
   doc.addEventListener("input", updateWordCount);
 
-  actions.append(
+  const topbarButtons = [
     el("button", { class: "btn btn-sm", html: `${ICONS.sparkle}<span>AI tools</span>`, onclick: (event) => {
       const rect = event.currentTarget.getBoundingClientRect();
       openAiMenu(rect.left - 60, rect.bottom + 6);
     } }),
     el("button", { class: "btn btn-sm", html: `${ICONS.timer}<span>Study</span>`, onclick: () => openStudySession({ ...note, content: doc.innerHTML }) }),
     el("button", { class: "btn btn-sm", html: `${ICONS.download}<span>Export</span>`, onclick: openExport }),
-    state.plan.features.backups
-      ? el("button", { class: "btn btn-sm", text: "History", onclick: openHistory })
-      : null,
+    state.plan.features.backups ? el("button", { class: "btn btn-sm", text: "History", onclick: openHistory }) : null,
     el("button", { class: "btn btn-sm btn-danger", html: ICONS.trash, title: "Delete note", onclick: async () => {
       if (!(await confirmDialog("Delete note?", "This permanently removes the document and its drawings.", "Delete"))) return;
       await api.deleteNote(note.id);
       toast("Note deleted.");
       navigate("notes");
-    } })
-  );
+    } }),
+  ].filter(Boolean);
+  actions.append(...topbarButtons);
 
   async function openExport() {
     const format = await modal({

@@ -215,7 +215,7 @@ export function createLocalBackend() {
     const prompt = (last?.content || "").trim();
     const short = prompt.length > 120 ? `${prompt.slice(0, 117)}…` : prompt;
     const lines = [
-      `**Demo mode** — no OpenRouter key is configured, so this reply is generated locally.`,
+      `Demo mode — no OpenRouter key is configured, so this reply is generated locally.`,
       "",
       `You asked: “${short || "(empty prompt)"}”.`,
       "",
