@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shared file — Cadiilac AI</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111113'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='white' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/landing.css" />
+    <style>
+      .share-page {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 32px 24px 80px;
+      }
+      .share-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 18px 0 28px;
+        border-bottom: 1px solid var(--line);
+      }
+      .share-card {
+        margin-top: 28px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--bg-raised);
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+      }
+      .share-card header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 20px 22px;
+        border-bottom: 1px solid var(--line);
+      }
+      .share-preview {
+        min-height: 320px;
+        display: grid;
+        place-items: center;
+        background: var(--bg-sunken);
+      }
+      .share-preview img,
+      .share-preview video,
+      .share-preview iframe {
+        max-width: 100%;
+        max-height: 70vh;
+        width: 100%;
+        border: 0;
+        display: block;
+      }
+      .share-preview pre {
+        margin: 0;
+        padding: 22px;
+        width: 100%;
+        max-height: 70vh;
+        overflow: auto;
+        font-size: 13px;
+        line-height: 1.6;
+        white-space: pre-wrap;
+      }
+      .share-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        padding: 16px 22px;
+        border-top: 1px solid var(--line);
+        font-size: 13.5px;
+        color: var(--text-muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="share-page">
+      <div class="share-head">
+        <a class="brand" href="/"><span class="brand-mark">C</span><span>Cadiilac AI</span></a>
+        <a class="btn btn-sm" style="margin-left: auto" href="/auth.html?mode=signup">Create your workspace</a>
+      </div>
+      <div id="share-root">
+        <div class="empty"><h3>Opening shared file…</h3></div>
+      </div>
+    </div>
+    <script type="module" src="/assets/js/share.js"></script>
+  </body>
+</html>

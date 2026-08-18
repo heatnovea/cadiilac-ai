@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign in — Cadiilac AI</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111113'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='white' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/landing.css" />
+    <style>
+      .auth {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 100vh;
+      }
+      .auth-panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 48px clamp(28px, 6vw, 92px);
+      }
+      .auth-aside {
+        border-left: 1px solid var(--line);
+        background: var(--bg-sunken);
+        position: relative;
+        overflow: hidden;
+      }
+      .auth-aside::after {
+        content: "";
+        position: absolute;
+        inset: auto -20% -40% -20%;
+        height: 420px;
+        background: radial-gradient(ellipse at center, var(--accent-soft), transparent 70%);
+      }
+      .auth-form {
+        width: min(390px, 100%);
+        display: grid;
+        gap: 14px;
+      }
+      .auth-title {
+        font-size: 30px;
+        letter-spacing: -0.03em;
+        font-weight: 520;
+      }
+      .switcher {
+        display: flex;
+        gap: 4px;
+        padding: 3px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-full);
+        background: var(--bg-sunken);
+        width: fit-content;
+      }
+      .switcher button {
+        border: none;
+        background: transparent;
+        padding: 6px 15px;
+        border-radius: var(--radius-full);
+        font-size: 13.5px;
+        cursor: pointer;
+        color: var(--text-muted);
+        transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+      }
+      .switcher button.is-active {
+        background: var(--bg-raised);
+        color: var(--text);
+        box-shadow: var(--shadow-xs);
+      }
+      .auth-error {
+        padding: 10px 12px;
+        border-radius: var(--radius-sm);
+        background: var(--danger-soft);
+        color: var(--danger);
+        font-size: 13.5px;
+      }
+      .demo-note {
+        padding: 12px 14px;
+        border: 1px dashed var(--line-strong);
+        border-radius: var(--radius-md);
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+      @media (max-width: 860px) {
+        .auth {
+          grid-template-columns: 1fr;
+        }
+        .auth-aside {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="auth">
+      <section class="auth-panel">
+        <a class="brand" href="/" style="margin-bottom: 40px"><span class="brand-mark">C</span> Cadiilac AI</a>
+        <form class="auth-form" id="form" novalidate>
+          <div class="switcher" role="tablist">
+            <button type="button" data-mode="signin" role="tab">Sign in</button>
+            <button type="button" data-mode="signup" role="tab">Create account</button>
+          </div>
+          <h1 class="auth-title" id="title">Welcome back</h1>
+          <p class="muted" id="subtitle" style="font-size: 14.5px; margin-bottom: 6px">
+            Sign in to your notes, AI assistant and drive.
+          </p>
+
+          <div class="auth-error hidden" id="error"></div>
+          <div class="demo-note hidden" id="demoNote">
+            <strong>Demo mode.</strong> No Supabase project is configured, so accounts and data are stored in this
+            browser only. Add credentials in <span class="mono">assets/js/config.js</span> to switch to the live backend.
+          </div>
+
+          <label class="field hidden" id="nameField">
+            <span class="field-label">Name</span>
+            <input class="input" id="name" autocomplete="name" placeholder="Ada Lovelace" />
+          </label>
+          <label class="field">
+            <span class="field-label">Email</span>
+            <input class="input" id="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+          </label>
+          <label class="field">
+            <span class="field-label">Password</span>
+            <input class="input" id="password" type="password" autocomplete="current-password" placeholder="At least 8 characters" required />
+          </label>
+
+          <button class="btn btn-primary" id="submit" type="submit" style="height: 42px">Sign in</button>
+          <p class="faint" style="font-size: 12.5px">
+            By continuing you agree to the Cadiilac AI terms. You never need to supply an API key — the platform provides
+            the AI infrastructure.
+          </p>
+        </form>
+      </section>
+      <aside class="auth-aside">
+        <div style="position: relative; z-index: 1; padding: clamp(32px, 5vw, 64px)">
+          <div class="section-kicker">Cadiilac AI</div>
+          <h2 style="margin-top: 14px; font-size: 30px; letter-spacing: -0.03em; font-weight: 520">
+            One workspace for notes, study and files.
+          </h2>
+          <ul class="checklist" style="margin-top: 28px">
+            <li>Handwriting, drawing and typed documents on one page.</li>
+            <li>AI rewriting, summaries, flashcards and quizzes.</li>
+            <li>Voice conversations with Cadiilac AI.</li>
+            <li>Drive storage with shareable links.</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <script type="module" src="/assets/js/auth.js"></script>
+  </body>
+</html>

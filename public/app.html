@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <title>Cadiilac AI</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111113'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='white' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;500&family=Lora&family=Source+Serif+4&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/app.css" />
+  </head>
+  <body class="app">
+    <div class="shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="/"><span class="brand-mark">C</span> Cadiilac AI</a>
+
+        <div class="side-link" data-route="notes" id="navNotes"></div>
+        <div class="side-link" data-route="ai" id="navAi"></div>
+        <div class="side-link" data-route="drive" id="navDrive"></div>
+        <div class="side-link" data-route="settings" id="navSettings"></div>
+
+        <div class="side-foot">
+          <div class="meter" id="creditMeter"></div>
+          <div class="meter" id="storageMeter"></div>
+          <div class="user-chip" id="userChip"></div>
+        </div>
+      </aside>
+
+      <div class="main">
+        <div class="demo-banner hidden" id="demoBanner"></div>
+        <header class="topbar">
+          <button class="btn btn-icon mobile-nav" id="menuToggle" aria-label="Menu">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 4h12M2 8h12M2 12h12" />
+            </svg>
+          </button>
+          <h1 id="viewTitle">Notes</h1>
+          <div class="topbar-actions" id="topbarActions"></div>
+        </header>
+        <main class="view" id="view"></main>
+      </div>
+    </div>
+
+    <div id="toasts"></div>
+    <script type="module" src="/assets/js/app.js"></script>
+  </body>
+</html>
